@@ -18,7 +18,7 @@ body {font-size:16px;}
 <nav class="w3-sidebar w3-dark-cyan w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft w3-hover-black" style="width:100%;font-size:22px">Close Menu</a>
   <div class="w3-container">
-    <h3 class="w3-padding-16"><b>Rolling Tables</b></h3>
+    <h3 class="w3-padding-16"><b><a href="#">Rolling Tables</a></b></h3>
   </div>
   <div class="w3-bar-block">
     <hr style="width:100%;border:1px solid #FFF" class="w3-round">
@@ -27,6 +27,8 @@ body {font-size:16px;}
     <a href="#npcnames" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">NPC Names</a>
     <hr style="width:100%;border:1px solid #FFF" class="w3-round">
     <a href="#hptracker" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">HP Tracker</a>
+    <hr style="width:100%;border:1px solid #FFF" class="w3-round">
+    <a href="#credits" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Credits & Thanks</a>
     <hr style="width:100%;border:1px solid #FFF" class="w3-round">
   </div>
 </nav>
@@ -58,25 +60,38 @@ body {font-size:16px;}
 
   <div class="w3-row-padding">
     <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
+      <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-dark-cyan">Critical Miss</div>
         <div class="w3-container">
-          <p><button id="criticalmiss" class="w3-button w3-block w3-dark-cyan w3-hover-black">Critical Miss</button></p>
+          <!-- <p><button id="criticalmiss" class="w3-button w3-block w3-dark-cyan w3-hover-black">Critical Miss</button></p> -->
+          <p>
+            <button id="criticalmiss" class="w3-button w3-dark-cyan w3-hover-black">Roll</button>
+            <button id="criticalmiss-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>
+          </p>
           <p id="criticalmiss-result" class="resulttext"></p>
         </div>
       </div>
     </div>
     <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
+      <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-dark-cyan">Spell Critical Miss</div>
         <div class="w3-container">
-          <p><button id="spellcriticalmiss" class="w3-button w3-block w3-dark-cyan w3-hover-black">Spell Critical Miss</button></p>
+          <p>
+            <button id="spellcriticalmiss" class="w3-button w3-dark-cyan w3-hover-black">Roll</button>
+            <button id="spellcriticalmiss-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>
+          </p>
           <p id="spellcriticalmiss-result" class="resulttext"></p>
         </div>
       </div>
     </div>
     <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
+      <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-dark-cyan">Critical Hit</div>
         <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-block w3-dark-cyan w3-hover-black">Critical Hit</button></p>
+          <p>
+            <button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button>
+            <button id="criticalhit-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>
+          </p>
           <p id="criticalhit-result" class="resulttext"></p>
         </div>
       </div>
@@ -89,25 +104,30 @@ body {font-size:16px;}
 
   <div class="w3-row-padding">
     <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
+      <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-dark-cyan">Dwarf</div>
         <div class="w3-container">
-          <p><button id="dwarfnames" class="w3-button w3-block w3-dark-cyan w3-hover-black">Dwarf</button></p>
+          <p>
+            <button id="dwarfnames" class="w3-button w3-dark-cyan w3-hover-black">Roll</button>
+          </p>
           <p id="dwarfnames-result" class="resulttext"></p>
         </div>
       </div>
     </div>
     <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
+      <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-dark-cyan">Table Title</div>
         <div class="w3-container">
-          <p><button class="w3-button w3-block w3-dark-cyan w3-hover-black">Table Title</button></p>
+          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
           <p class="resulttext"></p>
         </div>
       </div>
     </div>
     <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey">
+      <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-dark-cyan">Table Title</div>
         <div class="w3-container">
-          <p><button class="w3-button w3-block w3-dark-cyan w3-hover-black">Table Title</button></p>
+          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
           <p class="resulttext"></p>
         </div>
       </div>
@@ -137,6 +157,25 @@ body {font-size:16px;}
   <!-- Creature Blocks (populated programatically) -->
   <div id="creatureblocks" class="w3-row-padding w3-margin-bottom">
   </div>
+
+  <!-- Credits -->
+  <div class="w3-container" id="credits" style="margin-top:1000px">
+    <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>Credits & Thanks</b></h1>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col w3-margin-bottom">
+      <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-dark-cyan">The Vulture GM</div>
+        <div class="w3-container">
+          <p>
+            Allowed the use of content from:<br />
+            <a href="http://www.dmsguild.com/product/171542/5e-Critical-Hit-and-Fumble-Charts">The Vulture GM's Critical Hit and Fumble Charts</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+
 <!-- End page content -->
 </div>
 

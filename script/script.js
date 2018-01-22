@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   $('#tableflip').click(function(){
-    $('#tableflip').text("┻━┻ ︵ヽ(`Д´)ﾉ︵﻿ ┻━┻");
+    $('#tableflip').text('┻━┻ ︵ヽ(`Д´)ﾉ︵﻿ ┻━┻');
   });
 
   $('#mainpage').click(function(){
@@ -17,21 +17,55 @@ $(document).ready(function(){
 
   //Fumbles
   $('#criticalmiss').click(function(){
-    var roll = Math.floor(Math.random() * Object.keys(RollTables.CriticalMiss).length) + 1;
+    var roll = $('#criticalmiss-input').val();
+    if(roll == "" || roll == null){
+      roll = Math.floor(Math.random() * Object.keys(RollTables.CriticalMiss).length) + 1;
+    }
     var rollresult = RollTables.CriticalMiss[roll];
-    $('#criticalmiss-result').text(rollresult);
+    $('#criticalmiss-result').html(rollresult);
+    $('#criticalmiss-input').val('');
   });
 
+  $('#criticalmiss-pick').click(function(){
+    $('#criticalmiss-result').html('\
+      <input id="criticalmiss-input" class="w3-input" type="text" placeholder="1-100" pattern="^[1-9][0-9]?$|^100$">\
+    ');
+    $('#criticalmiss-input').focus();
+  });
+
+
   $('#spellcriticalmiss').click(function(){
-    var roll = Math.floor(Math.random() * Object.keys(RollTables.SpellCriticalMiss).length) + 1;
+    var roll = $('#spellcriticalmiss-input').val();
+    if(roll == "" || roll == null){
+      roll = Math.floor(Math.random() * Object.keys(RollTables.SpellCriticalMiss).length) + 1;
+    }
     var rollresult = RollTables.SpellCriticalMiss[roll];
-    $('#spellcriticalmiss-result').text(rollresult);
+    $('#spellcriticalmiss-result').html(rollresult);
+    $('#spellcriticalmiss-input').val('');
+  });
+
+  $('#spellcriticalmiss-pick').click(function(){
+    $('#spellcriticalmiss-result').html('\
+      <input id="spellcriticalmiss-input" class="w3-input" type="text" placeholder="1-10" pattern="^[1-9]$|^10$">\
+    ');
+    $('#spellcriticalmiss-input').focus();
   });
 
   $('#criticalhit').click(function(){
-    var roll = Math.floor(Math.random() * Object.keys(RollTables.CriticalHit).length) + 1;
+    var roll = $('#criticalhit-input').val();
+    if(roll == "" || roll == null){
+      roll = Math.floor(Math.random() * Object.keys(RollTables.CriticalHit).length) + 1;
+    }
     var rollresult = RollTables.CriticalHit[roll];
-    $('#criticalhit-result').text(rollresult);
+    $('#criticalhit-result').html(rollresult);
+    $('#criticalhit-input').val('');
+  });
+
+  $('#criticalhit-pick').click(function(){
+    $('#criticalhit-result').html('\
+      <input id="criticalhit-input" class="w3-input" type="text" placeholder="1-100" pattern="^[1-9][0-9]?$|^100$">\
+    ');
+    $('#criticalhit-input').focus();
   });
 
   //NPC Names
