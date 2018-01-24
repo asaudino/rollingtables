@@ -116,7 +116,7 @@ $(document).ready(function(){
 
     $("#creatureblocks").append('\
     <div class="creatureblock w3-half w3-margin-bottom">\
-      <div class="w3-light-grey" style="padding: 5px">\
+      <div class="w3-light-grey w3-border-dark-cyan" style="padding: 5px">\
       <div style="float:right">\
         <button class="removecreature w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">X</button>\
       </div>\
