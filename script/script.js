@@ -12,72 +12,98 @@ $(document).ready(function(){
     $('.resulttext').text('');
   });
 
-  //Tables - TODO: This can be replaced with a foreach using the tables object
+  //Expand/Show Sections TODO
+  $('.hide').click(function(){
+    alert("HIDE");
+  });
+  $('.show').click(function(){
+    alert("SHOW");
+  });
+
+  //Tables
   var RollTables = JSON.parse(sessionStorage.RollTables);
 
-  //Fumbles
-  $('#criticalmiss').click(function(){
-    var roll = $('#criticalmiss-input').val();
-    if(roll == "" || roll == null){
-      roll = Math.floor(Math.random() * Object.keys(RollTables.CriticalMiss).length) + 1;
-    }
-    var rollresult = RollTables.CriticalMiss[roll];
-    $('#criticalmiss-result').html(rollresult);
-    $('#criticalmiss-input').val('');
+  //Build HTML for tables
+  Object.keys(RollTables).forEach(function(tableSection){
+    //Header
+    $('#tables-container').append('\
+      <div class="w3-container" id="' + tableSection + '" style="margin-top:25px">\
+        <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>' + tableSection + '</b>\
+        </h1>\
+      </div>\
+    ')
+
+    var tableCount = 0;
+    var rowCount = 0;
+    Object.keys(RollTables[tableSection]).forEach(function(tableName){
+      if(tableCount % 3 == 0){
+        $('#tables-container').append('\
+          <div id="' + tableSection + 'Row' + rowCount + '" class="w3-row-padding reveal"></div>\
+        ')
+      }
+
+      $('#' + tableSection + 'Row' + rowCount).append('\
+        <div class="w3-col m4 w3-margin-bottom">\
+          <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">\
+            <div class="w3-dark-cyan">' + tableName + '</div>\
+            <div class="w3-container">\
+              <p>\
+                <button id="' + tableName + '" class="rollbutton w3-button w3-dark-cyan w3-hover-black">Roll</button>\
+                <button id="' + tableName + '-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>\
+              </p>\
+              <p class="resulttext"></p>\
+            </div>\
+          </div>\
+        </div>\
+      ')
+
+      tableCount++;
+    });
   });
 
-  $('#criticalmiss-pick').click(function(){
-    $('#criticalmiss-result').html('\
-      <input id="criticalmiss-input" class="w3-input" type="text" placeholder="1-100" pattern="^[1-9][0-9]?$|^100$">\
-    ');
-    $('#criticalmiss-input').focus();
+  //TODO: Build Javascript for table functions, delegate since the HTML is dynamically generated
+  Object.keys(RollTables).forEach(function(tableSection){
+    Object.keys(RollTables[tableSection]).forEach(function(tableName){
+      var tableLength = Object.keys(RollTables[tableSection][tableName]).length;
+      $(document).on('click', '#' + tableName, function(){
+        if(tableSection == "NPC_Names"){ //TODO
+          // //Roll Name
+          // var roll = Math.floor(Math.random() * Object.keys(RollTables.NPC_Names.DwarfNames).length) + 1;
+          // var rollresult = RollTables.NPC_Names.DwarfNames[roll];
+          // //Roll Surname
+          // roll = Math.floor(Math.random() * Object.keys(RollTables.NPC_Names.DwarfSurnames).length) + 1;
+          // rollresult += " " + RollTables.NPC_Names.DwarfSurnames[roll];
+          // $('#dwarfnames-result').text(rollresult);
+        }
+        else{
+          var roll = $(this).closest('[class^=w3-container]').find('[class^=tableinput]').val();
+          if(roll == "" || roll == null){
+            roll = Math.floor(Math.random() * tableLength) + 1;
+          }
+          var rollresult = RollTables[tableSection][tableName][roll];
+        }
+        $(this).closest('[class^=w3-container]').find('[class^=resulttext]').html(rollresult);
+        $(this).closest('[class^=w3-container]').find('[class^=tableinput]').val('');
+      });
+      $(document).on('click', '#' + tableName + '-pick', function(){
+        $(this).closest('[class^=w3-container]').find('[class^=resulttext]').html('\
+            <input class="tableinput w3-input" type="text" placeholder="1-' + tableLength + '" pattern="^[1-9][0-9]?$|^100$">\
+          ');
+          $(this).closest('[class^=w3-container]').find('[class^=tableinput]').focus();
+      });
+    });
   });
 
-
-  $('#spellcriticalmiss').click(function(){
-    var roll = $('#spellcriticalmiss-input').val();
-    if(roll == "" || roll == null){
-      roll = Math.floor(Math.random() * Object.keys(RollTables.SpellCriticalMiss).length) + 1;
-    }
-    var rollresult = RollTables.SpellCriticalMiss[roll];
-    $('#spellcriticalmiss-result').html(rollresult);
-    $('#spellcriticalmiss-input').val('');
-  });
-
-  $('#spellcriticalmiss-pick').click(function(){
-    $('#spellcriticalmiss-result').html('\
-      <input id="spellcriticalmiss-input" class="w3-input" type="text" placeholder="1-10" pattern="^[1-9]$|^10$">\
-    ');
-    $('#spellcriticalmiss-input').focus();
-  });
-
-  $('#criticalhit').click(function(){
-    var roll = $('#criticalhit-input').val();
-    if(roll == "" || roll == null){
-      roll = Math.floor(Math.random() * Object.keys(RollTables.CriticalHit).length) + 1;
-    }
-    var rollresult = RollTables.CriticalHit[roll];
-    $('#criticalhit-result').html(rollresult);
-    $('#criticalhit-input').val('');
-  });
-
-  $('#criticalhit-pick').click(function(){
-    $('#criticalhit-result').html('\
-      <input id="criticalhit-input" class="w3-input" type="text" placeholder="1-100" pattern="^[1-9][0-9]?$|^100$">\
-    ');
-    $('#criticalhit-input').focus();
-  });
-
-  //NPC Names
-  $('#dwarfnames').click(function(){
-    //Roll Name
-    var roll = Math.floor(Math.random() * Object.keys(RollTables.DwarfNames).length) + 1;
-    var rollresult = RollTables.DwarfNames[roll];
-    //Roll Surname
-    roll = Math.floor(Math.random() * Object.keys(RollTables.DwarfSurnames).length) + 1;
-    rollresult += " " + RollTables.DwarfSurnames[roll];
-    $('#dwarfnames-result').text(rollresult);
-  });
+  // //NPC Names
+  // $('#dwarfnames').click(function(){
+  //   //Roll Name
+  //   var roll = Math.floor(Math.random() * Object.keys(RollTables.NPC_Names.DwarfNames).length) + 1;
+  //   var rollresult = RollTables.NPC_Names.DwarfNames[roll];
+  //   //Roll Surname
+  //   roll = Math.floor(Math.random() * Object.keys(RollTables.NPC_Names.DwarfSurnames).length) + 1;
+  //   rollresult += " " + RollTables.NPC_Names.DwarfSurnames[roll];
+  //   $('#dwarfnames-result').text(rollresult);
+  // });
 
   //HP Tracker
   var creatureCount = 0;
@@ -157,7 +183,20 @@ $(document).ready(function(){
     $('#creaturename-input').focus();
   });
 
+  //Click add creature button on ENter key
+  $(document).on('keyup', '.hptrackerinput', function(key){
+    if (key.keyCode == 13) {
+      $('#addcreature').click();
+    }
+  });
+
   //Delegated events for dynamically generated elements
+  //Click roll button on Enter key for table inputs
+  $(document).on('keyup', '.tableinput', function(key){
+    if (key.keyCode == 13) {
+      $(this).closest('[class^=w3-container]').find('[class^=rollbutton]').click();
+    }
+  });
   //Block controls
   $(document).on('click', '.unstrikeoutcreature', function(){
     $(this).closest('[class^=creatureblock]').find('[class^=creaturename]').removeClass('strikeout');
@@ -172,7 +211,6 @@ $(document).ready(function(){
   $(document).on('click', '.removecreature', function(){
     $(this).closest('[class^=creatureblock]').remove();
   });
-
   //HP controls
   $(document).on('click', '.add1', function(){
     var currHP = parseInt($(this).closest('[class^=creatureblock]').find('[class^=creaturehp]').text());

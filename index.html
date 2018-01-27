@@ -23,7 +23,7 @@ body {font-size:16px;}
   <div class="w3-bar-block">
     <hr style="width:100%;border:1px solid #FFF" class="w3-round">
     <button id="clearalltables" onclick="w3_close()" class="w3-button w3-block w3-dark-cyan w3-hover-white" style="text-align:left">Clear All Tables</button>
-    <a href="#fumbles" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Fumbles</a>
+    <a href="#criticals" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Criticals</a>
     <a href="#npcnames" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">NPC Names</a>
     <hr style="width:100%;border:1px solid #FFF" class="w3-round">
     <a href="#hptracker" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">HP Tracker</a>
@@ -45,161 +45,32 @@ body {font-size:16px;}
 <!-- !PAGE CONTENT! -->
 <div id="mainpage" class="w3-main" style="margin-left:340px;margin-right:40px">
 
-  <!-- Tables -->
+  <!-- Tables! -->
   <div class="w3-container" id="tables" style="margin-top:75px">
     <a href="#" style="text-decoration:none;">
-      <h1 class="w3-xlarge w3-text-dark-cyan"><div id="tableflip" style="font-weight:bold;">(╯°□°）╯︵ ┻━┻</div></h1>
+      <h1 class="w3-xlarge w3-text-dark-cyan"><div id="tableflip" style="font-weight:bold;">(╯°□°)╯︵ ┻━┻</div></h1>
       <h3 class="w3-xlarge w3-text-dark-cyan">(Work in progress...)</h3>
     </a>
   </div>
 
   <!-- The Tables -->
-  <div class="w3-container" id="fumbles" style="margin-top:25px">
-    <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>Fumbles</b></h1>
-  </div>
-
-  <div class="w3-row-padding">
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Critical Miss</div>
-        <div class="w3-container">
-          <!-- <p><button id="criticalmiss" class="w3-button w3-block w3-dark-cyan w3-hover-black">Critical Miss</button></p> -->
-          <p>
-            <button id="criticalmiss" class="w3-button w3-dark-cyan w3-hover-black">Roll</button>
-            <button id="criticalmiss-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>
-          </p>
-          <p id="criticalmiss-result" class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Spell Critical Miss</div>
-        <div class="w3-container">
-          <p>
-            <button id="spellcriticalmiss" class="w3-button w3-dark-cyan w3-hover-black">Roll</button>
-            <button id="spellcriticalmiss-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>
-          </p>
-          <p id="spellcriticalmiss-result" class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Critical Hit</div>
-        <div class="w3-container">
-          <p>
-            <button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button>
-            <button id="criticalhit-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>
-          </p>
-          <p id="criticalhit-result" class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="w3-container" id="npcnames" style="margin-top:25px">
-    <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>NPC Names</b></h1>
-  </div>
-
-  <div class="w3-row-padding">
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Dragonborn</div>
-        <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
-          <p class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Dwarf</div>
-        <div class="w3-container">
-          <p>
-            <button id="dwarfnames" class="w3-button w3-dark-cyan w3-hover-black">Roll</button>
-          </p>
-          <p id="dwarfnames-result" class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Elf</div>
-        <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
-          <p class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Gnome</div>
-        <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
-          <p class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Halfling</div>
-        <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
-          <p class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Half-Elf</div>
-        <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
-          <p class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Half-Orc</div>
-        <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
-          <p class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Human</div>
-        <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
-          <p class="resulttext"></p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col m4 w3-margin-bottom">
-      <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">
-        <div class="w3-dark-cyan">Tiefling</div>
-        <div class="w3-container">
-          <p><button id="criticalhit" class="w3-button w3-dark-cyan w3-hover-black">Roll</button></p>
-          <p class="resulttext"></p>
-        </div>
-      </div>
-    </div>
+  <div id="tables-container">
+    <!-- Content of tables-container dynamically generated from tables.js and script.js -->
   </div>
 
   <!-- HP Tracker -->
   <div class="w3-container" id="hptracker" style="margin-top:75px">
-    <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>HP Tracker</b></h1>
+    <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>HP Tracker</b>
+    </h1>
 
     <div class="w3-light-grey w3-border-dark-cyan w3-margin-bottom">
       <div class="w3-container w3-margin-bottom">
         <p>
         <label>Creature Name</label>
-        <input id="creaturename-input" class="w3-input" type="text"></p>
+        <input id="creaturename-input" class="w3-input hptrackerinput" type="text"></p>
         <p>
         <label>Creature HP</label>
-        <input id="creaturehp-input" class="w3-input" type="text"></p>
+        <input id="creaturehp-input" class="w3-input hptrackerinput" type="text"></p>
         <p class="w3-center">
         <button id="addcreature" class="w3-button w3-dark-cyan w3-hover-black">Add Creature</button>
         <button id="clearallcreatures" class="w3-button w3-dark-cyan w3-hover-black">Clear All Creatures</button>
