@@ -17,6 +17,11 @@ $(document).ready(function(){
 
   //Build HTML for tables
   Object.keys(RollTables).forEach(function(tableSection){
+    //Nav
+    $('#nav-container').append('\
+    <a href="#' + tableSection + '" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">' + tableSection + '</a>\
+    ')
+
     //Header
     $('#tables-container').append('\
       <div class="w3-container" id="' + tableSection + '" style="margin-top:25px">\
@@ -89,17 +94,6 @@ $(document).ready(function(){
       });
     });
   });
-
-  // //NPC Names
-  // $('#dwarfnames').click(function(){
-  //   //Roll Name
-  //   var roll = Math.floor(Math.random() * Object.keys(RollTables.NPC_Names.DwarfNames).length) + 1;
-  //   var rollresult = RollTables.NPC_Names.DwarfNames[roll];
-  //   //Roll Surname
-  //   roll = Math.floor(Math.random() * Object.keys(RollTables.NPC_Names.DwarfSurnames).length) + 1;
-  //   rollresult += " " + RollTables.NPC_Names.DwarfSurnames[roll];
-  //   $('#dwarfnames-result').text(rollresult);
-  // });
 
   //HP Tracker
   var creatureCount = 0;
