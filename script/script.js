@@ -12,14 +12,6 @@ $(document).ready(function(){
     $('.resulttext').text('');
   });
 
-  //Expand/Show Sections TODO
-  $('.hide').click(function(){
-    alert("HIDE");
-  });
-  $('.show').click(function(){
-    alert("SHOW");
-  });
-
   //Tables
   var RollTables = JSON.parse(sessionStorage.RollTables);
 
@@ -42,6 +34,11 @@ $(document).ready(function(){
         ')
       }
 
+      var pickButtonHTML = '<button id="' + tableName + '-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>';
+      if(tableSection == 'NPC_Names'){
+        pickButtonHTML = ''
+      }
+
       $('#' + tableSection + 'Row' + rowCount).append('\
         <div class="w3-col m4 w3-margin-bottom">\
           <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">\
@@ -49,7 +46,7 @@ $(document).ready(function(){
             <div class="w3-container">\
               <p>\
                 <button id="' + tableName + '" class="rollbutton w3-button w3-dark-cyan w3-hover-black">Roll</button>\
-                <button id="' + tableName + '-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>\
+                ' + pickButtonHTML + '\
               </p>\
               <p class="resulttext"></p>\
             </div>\
@@ -66,16 +63,15 @@ $(document).ready(function(){
     Object.keys(RollTables[tableSection]).forEach(function(tableName){
       var tableLength = Object.keys(RollTables[tableSection][tableName]).length;
       $(document).on('click', '#' + tableName, function(){
-        if(tableSection == "NPC_Names"){ //TODO
-          // //Roll Name
-          // var roll = Math.floor(Math.random() * Object.keys(RollTables.NPC_Names.DwarfNames).length) + 1;
-          // var rollresult = RollTables.NPC_Names.DwarfNames[roll];
-          // //Roll Surname
-          // roll = Math.floor(Math.random() * Object.keys(RollTables.NPC_Names.DwarfSurnames).length) + 1;
-          // rollresult += " " + RollTables.NPC_Names.DwarfSurnames[roll];
-          // $('#dwarfnames-result').text(rollresult);
+        if(tableSection == "NPC_Names"){
+          //NPC Name table functions (two part result, two rolls)
+          var roll = Math.floor(Math.random() * Object.keys(RollTables[tableSection][tableName]["Names"]).length) + 1;
+          var rollresult = RollTables[tableSection][tableName]["Names"][roll];
+          roll = Math.floor(Math.random() * Object.keys(RollTables[tableSection][tableName]["Surnames"]).length) + 1;
+          rollresult += " " + RollTables[tableSection][tableName]["Surnames"][roll];
         }
         else{
+          //Non-NPC Name (single roll) table functions
           var roll = $(this).closest('[class^=w3-container]').find('[class^=tableinput]').val();
           if(roll == "" || roll == null){
             roll = Math.floor(Math.random() * tableLength) + 1;
