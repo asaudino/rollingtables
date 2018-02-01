@@ -167,3 +167,27 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 /* Custom */
 .strikeout{text-decoration: line-through;}
+
+.show{
+  display:none;
+}
+
+.hide{
+  display:inline;
+}
+
+.arrow-show {
+    float: right;
+    margin-top: 15px;
+    margin-right: 10px;
+    border: 10px solid transparent;
+    border-top-color: #FFF;
+}
+
+.arrow-hide {
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+    border: 10px solid transparent;
+    border-bottom-color: #FFF;
+}

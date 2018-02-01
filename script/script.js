@@ -15,7 +15,7 @@ $(document).ready(function(){
   //Tables
   var RollTables = JSON.parse(sessionStorage.RollTables);
 
-  //Build HTML for tables
+  //Build HTML for row
   Object.keys(RollTables).forEach(function(tableSection){
     //Nav
     $('#nav-container').append('\
@@ -24,9 +24,11 @@ $(document).ready(function(){
 
     //Header
     $('#tables-container').append('\
-      <div class="w3-container" id="' + tableSection + '" style="margin-top:25px">\
-        <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>' + tableSection + '</b>\
+      <div class="w3-container" id="' + tableSection + '">\
+        <h1 class="tableheader w3-xlarge w3-text-white w3-dark-cyan w3-hover-black" style="padding-left:20px;"><b>' + tableSection + '</b>\
+        <div class="arrow-show"></div>\
         </h1>\
+        <div id="' + tableSection + '-content" class="tablecontent show"></div>\
       </div>\
     ')
 
@@ -34,8 +36,8 @@ $(document).ready(function(){
     var rowCount = 0;
     Object.keys(RollTables[tableSection]).forEach(function(tableName){
       if(tableCount % 3 == 0){
-        $('#tables-container').append('\
-          <div id="' + tableSection + 'Row' + rowCount + '" class="w3-row-padding reveal"></div>\
+        $('#' + tableSection + '-content').append('\
+          <div id="' + tableSection + 'Row' + rowCount + '" class="w3-row-padding"></div>\
         ')
       }
 
@@ -60,10 +62,13 @@ $(document).ready(function(){
       ')
 
       tableCount++;
+      if(tableCount % 3 == 0){
+        rowCount++;
+      }
     });
   });
 
-  //TODO: Build Javascript for table functions, delegate since the HTML is dynamically generated
+  //Build click functions for tables
   Object.keys(RollTables).forEach(function(tableSection){
     Object.keys(RollTables[tableSection]).forEach(function(tableName){
       var tableLength = Object.keys(RollTables[tableSection][tableName]).length;
@@ -88,11 +93,27 @@ $(document).ready(function(){
       });
       $(document).on('click', '#' + tableName + '-pick', function(){
         $(this).closest('[class^=w3-container]').find('[class^=resulttext]').html('\
-            <input class="tableinput w3-input" type="text" placeholder="1-' + tableLength + '" pattern="^[1-9][0-9]?$|^100$">\
+            <input class="tableinput w3-input" type="text" placeholder="1-' + tableLength + '">\
           ');
           $(this).closest('[class^=w3-container]').find('[class^=tableinput]').focus();
       });
     });
+  });
+
+  //Expand/Collapse Sections
+  $(document).on('click', '.tableheader', function(){
+    var tableContentElement = $(this).closest('[class^=w3-container]').find('[class^=tablecontent]')
+    if(tableContentElement.hasClass('show')){
+      tableContentElement.removeClass('show');
+      tableContentElement.addClass('hide');
+    }
+    else if(tableContentElement.hasClass('hide')){
+      tableContentElement.removeClass('hide');
+      tableContentElement.addClass('show');
+    }
+
+    // $(this).closest('[class^=w3-container]').find('[class^=tablecontent]').removeClass('show');
+    // $(this).closest('[class^=w3-container]').find('[class^=tablecontent]').addClass('hide');
   });
 
   //HP Tracker
@@ -159,7 +180,6 @@ $(document).ready(function(){
       </div>\
     </div>');
     creatureCount++
-
   });
 
   //Clear creature blocks, clear inputs, clear errors, reset creature block counter
