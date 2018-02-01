@@ -26,7 +26,7 @@ $(document).ready(function(){
     $('#tables-container').append('\
       <div class="w3-container" id="' + tableSection + '">\
         <h1 class="tableheader w3-xlarge w3-text-white w3-dark-cyan w3-hover-black" style="padding-left:20px;"><b>' + tableSection + '</b>\
-        <div class="arrow-show"></div>\
+        <div class="arrow arrow-show"></div>\
         </h1>\
         <div id="' + tableSection + '-content" class="tablecontent show"></div>\
       </div>\
@@ -103,13 +103,18 @@ $(document).ready(function(){
   //Expand/Collapse Sections
   $(document).on('click', '.tableheader', function(){
     var tableContentElement = $(this).closest('[class^=w3-container]').find('[class^=tablecontent]')
+    var tableArrowElement = $(this).closest('[class^=w3-container]').find('[class^=arrow]')
     if(tableContentElement.hasClass('show')){
       tableContentElement.removeClass('show');
       tableContentElement.addClass('hide');
+      tableArrowElement.removeClass('arrow-show');
+      tableArrowElement.addClass('arrow-hide');
     }
     else if(tableContentElement.hasClass('hide')){
       tableContentElement.removeClass('hide');
       tableContentElement.addClass('show');
+      tableArrowElement.removeClass('arrow-hide');
+      tableArrowElement.addClass('arrow-show');
     }
 
     // $(this).closest('[class^=w3-container]').find('[class^=tablecontent]').removeClass('show');
