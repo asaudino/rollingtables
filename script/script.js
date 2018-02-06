@@ -19,13 +19,13 @@ $(document).ready(function(){
   Object.keys(RollTables).forEach(function(tableSection){
     //Nav
     $('#nav-container').append('\
-    <a href="#' + tableSection + '" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">' + tableSection + '</a>\
+    <a href="#' + tableSection + '" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-light-cyan">' + tableSection + '</a>\
     ')
 
     //Header
     $('#tables-container').append('\
       <div class="w3-container" id="' + tableSection + '">\
-        <h1 class="tableheader w3-xlarge w3-text-white w3-dark-cyan w3-hover-black" style="padding-left:20px;"><b>' + tableSection + '</b>\
+        <h1 class="tableheader w3-xlarge w3-text-white w3-dark-cyan w3-hover-light-cyan" style="padding-left:20px;"><b>' + tableSection + '</b>\
         <div class="arrow arrow-show"></div>\
         </h1>\
         <div id="' + tableSection + '-content" class="tablecontent show"></div>\
@@ -41,7 +41,7 @@ $(document).ready(function(){
         ')
       }
 
-      var pickButtonHTML = '<button id="' + tableName + '-pick" class="w3-button w3-dark-cyan w3-hover-black">Pick</button>';
+      var pickButtonHTML = '<button id="' + tableName + '-pick" class="w3-button w3-dark-cyan w3-hover-light-cyan">Pick</button>';
       if(tableSection == 'NPC_Names'){
         pickButtonHTML = ''
       }
@@ -52,7 +52,7 @@ $(document).ready(function(){
             <div class="w3-dark-cyan">' + tableName + '</div>\
             <div class="w3-container">\
               <p>\
-                <button id="' + tableName + '" class="rollbutton w3-button w3-dark-cyan w3-hover-black">Roll</button>\
+                <button id="' + tableName + '" class="rollbutton w3-button w3-dark-cyan w3-hover-light-cyan">Roll</button>\
                 ' + pickButtonHTML + '\
               </p>\
               <p class="resulttext"></p>\
@@ -117,8 +117,6 @@ $(document).ready(function(){
       tableArrowElement.addClass('arrow-show');
     }
 
-    // $(this).closest('[class^=w3-container]').find('[class^=tablecontent]').removeClass('show');
-    // $(this).closest('[class^=w3-container]').find('[class^=tablecontent]').addClass('hide');
   });
 
   //HP Tracker
@@ -160,7 +158,7 @@ $(document).ready(function(){
     <div class="creatureblock w3-half w3-margin-bottom">\
       <div class="w3-light-grey w3-border-dark-cyan" style="padding: 5px">\
       <div style="float:right">\
-        <button class="removecreature w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">X</button>\
+        <button class="removecreature w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px">X</button>\
       </div>\
       <div style="float:left">\
         <div class="creaturecount w3-text-dark-cyan" style="font-size: 18pt; margin-left: 5px;">Creature #' + creatureCount + '</div>\
@@ -172,14 +170,14 @@ $(document).ready(function(){
           </div>\
           <p><input class="creaturenote w3-input" type="text" placeholder="Enter notes or conditions here"></p>\
           <div>\
-            <button class="add1 w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">+1</button>\
-            <button class="sub1 w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">-1</button>\
-            <button class="add5 w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">+5</button>\
-            <button class="sub5 w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">-5</button>\
-            <button class="add10 w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">+10</button>\
-            <button class="sub10 w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">-10</button>\
-            <button class="unstrikeoutcreature w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px">A</button>\
-            <button class="strikeoutcreature w3-button w3-dark-cyan w3-hover-black" style="padding:4px 8px; width:35px; margin-bottom: 2px"><span style="text-decoration:line-through;">A<span></button>\
+            <button class="add1 w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px">+1</button>\
+            <button class="sub1 w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px">-1</button>\
+            <button class="add5 w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px">+5</button>\
+            <button class="sub5 w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px">-5</button>\
+            <button class="add10 w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px">+10</button>\
+            <button class="sub10 w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px">-10</button>\
+            <button class="unstrikeoutcreature w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px">A</button>\
+            <button class="strikeoutcreature w3-button w3-dark-cyan w3-hover-light-cyan" style="padding:4px 8px; width:35px; margin-bottom: 2px"><span style="text-decoration:line-through;">A<span></button>\
           </div>\
         </div>\
       </div>\
