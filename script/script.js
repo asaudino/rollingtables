@@ -19,13 +19,13 @@ $(document).ready(function(){
   Object.keys(RollTables).forEach(function(tableSection){
     //Nav
     $('#nav-container').append('\
-    <a href="#' + tableSection + '" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-light-cyan">' + tableSection + '</a>\
+    <a href="#' + tableSection + '" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-light-cyan">' + tableSection.replace(/_/g, " ") + '</a>\
     ')
 
     //Header
     $('#tables-container').append('\
       <div class="w3-container" id="' + tableSection + '">\
-        <h1 class="tableheader w3-xlarge w3-text-white w3-dark-cyan w3-hover-light-cyan" style="padding-left:20px;"><b>' + tableSection + '</b>\
+        <h1 class="tableheader w3-xlarge w3-text-white w3-dark-cyan w3-hover-light-cyan" style="padding-left:20px;"><b>' + tableSection.replace(/_/g, " ") + '</b>\
         <div class="arrow arrow-show"></div>\
         </h1>\
         <div id="' + tableSection + '-content" class="tablecontent show"></div>\
@@ -49,7 +49,7 @@ $(document).ready(function(){
       $('#' + tableSection + 'Row' + rowCount).append('\
         <div class="w3-col m4 w3-margin-bottom">\
           <div class="w3-light-grey w3-border-dark-cyan" style="text-align:center">\
-            <div class="w3-dark-cyan">' + tableName + '</div>\
+            <div class="w3-dark-cyan">' + tableName.replace(/_/g, " ") + '</div>\
             <div class="w3-container">\
               <p>\
                 <button id="' + tableName + '" class="rollbutton w3-button w3-dark-cyan w3-hover-light-cyan">Roll</button>\
