@@ -14,6 +14,7 @@ $(document).ready(function(){
 
   //Tables
   var RollTables = JSON.parse(sessionStorage.RollTables);
+  var IndirectTables = JSON.parse(sessionStorage.IndirectTables);
 
   //Build HTML for row
   Object.keys(RollTables).forEach(function(tableSection){
@@ -196,7 +197,7 @@ $(document).ready(function(){
     $('#creaturename-input').focus();
   });
 
-  //Click add creature button on ENter key
+  //Click add creature button on Enter key
   $(document).on('keyup', '.hptrackerinput', function(key){
     if (key.keyCode == 13) {
       $('#addcreature').click();
@@ -248,6 +249,24 @@ $(document).ready(function(){
   $(document).on('click', '.sub10', function(){
     var currHP = parseInt($(this).closest('[class^=creatureblock]').find('[class^=creaturehp]').text());
     $(this).closest('[class^=creatureblock]').find('[class^=creaturehp]').text(currHP - 10);
+  });
+
+  // Itemizer
+  $('#generateitemizer').click(function(){
+    var partyLevel = $('#partylevel-input').val();
+    alert("TODO");
+  });
+
+  // Potionizer
+  $('#generatepotionizer').click(function(){
+    var potionDescription = ""
+    Object.keys(RollTables["Potions"]).forEach(function(tableName){
+      var tableLength = Object.keys(RollTables["Potions"][tableName]).length;
+      var roll = Math.floor(Math.random() * tableLength) + 1;
+      var rollresult = RollTables["Potions"][tableName][roll];
+      potionDescription += "<br /><strong>" + tableName.replace(/_/g, " ") + ": </strong>" + rollresult + "<br />";
+    });
+    $('#resulttextpotionizer').html(potionDescription);
   });
 
 });

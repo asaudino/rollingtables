@@ -26,6 +26,8 @@ body {font-size:16px;}
     <div id="nav-container"></div>
     <hr style="width:100%;border:1px solid #FFF" class="w3-round">
     <a href="#hptracker" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-light-cyan">HP Tracker</a>
+    <a href="#itemizer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-light-cyan">Itemizer</a>
+    <a href="#potionizer" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-light-cyan">Potionizer</a>
     <hr style="width:100%;border:1px solid #FFF" class="w3-round">
     <a href="#credits" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-light-cyan">Credits & Thanks</a>
     <hr style="width:100%;border:1px solid #FFF" class="w3-round">
@@ -80,6 +82,40 @@ body {font-size:16px;}
   <!-- Creature Blocks (populated programatically) -->
   <div id="creatureblocks" class="w3-row-padding w3-margin-bottom">
   </div>
+  <!-- Itemizer -->
+  <div class="w3-container" id="itemizer" style="margin-top:25px">
+    <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>Itemizer</b>
+    </h1>
+
+    <div class="w3-light-grey w3-border-dark-cyan w3-margin-bottom">
+      <div class="w3-container w3-margin-bottom">
+        <p>
+        <label>Party Level</label>
+        <input id="partylevel-input" class="w3-input partylevelinput" type="text"></p>
+        <p>
+        <p class="w3-center">
+        <button id="generateitemizer" class="w3-button w3-dark-cyan w3-hover-light-cyan" style="margin-top:2px;">Generate Items</button>
+        <button id="clearallitemizer" class="w3-button w3-dark-cyan w3-hover-light-cyan" style="margin-top:2px;">Clear All Items</button>
+        </p>
+        <div id="itemizererror" class="w3-text-red" style="text-align:center;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Potionizer -->
+  <div class="w3-container" id="itemizer" style="margin-top:25px">
+    <h1 class="w3-xxxlarge w3-text-dark-cyan"><b>Potionizer</b>
+    </h1>
+
+    <div class="w3-light-grey w3-border-dark-cyan w3-margin-bottom">
+      <div class="w3-container w3-margin-bottom">
+        <p class="w3-center">
+        <button id="generatepotionizer" class="w3-button w3-dark-cyan w3-hover-light-cyan" style="margin-top:2px;">Generate Potion</button>
+        </p>
+        <p id="resulttextpotionizer"></p>
+      </div>
+    </div>
+  </div>
 
   <!-- Credits -->
   <div class="w3-container" id="credits" style="margin-top:1000px">
@@ -102,6 +138,18 @@ body {font-size:16px;}
 
     <div class="w3-col w3-margin-bottom">
       <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-xlarge w3-text-white w3-dark-cyan">Firelance (En World foums)</div>
+        <div class="w3-container">
+          <p>
+            Analysis of "Typical" Magic Item Distribution.<br />
+            <a href="http://www.enworld.org/forum/showthread.php?395770-Analysis-of-quot-Typical-quot-Magic-Item-Distribution">Forum Post (if still active)</a><br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-col w3-margin-bottom">
+      <div class="w3-light-grey" style="text-align:center">
         <div class="w3-xlarge w3-text-white w3-dark-cyan">Mike Shea (Sly Flourish)</div>
         <div class="w3-container">
           <p>
@@ -113,7 +161,19 @@ body {font-size:16px;}
         </div>
       </div>
     </div>
-    
+
+    <div class="w3-col w3-margin-bottom">
+      <div class="w3-light-grey" style="text-align:center">
+        <div class="w3-xlarge w3-text-white w3-dark-cyan">olirant (Reddit)</div>
+        <div class="w3-container">
+          <p>
+            Random potion tables.<br />
+            <a href="https://www.reddit.com/r/DnDBehindTheScreen/comments/4btnkc/random_potions_table/">Forum Post (if still active)</a><br />
+          </p>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 <!-- End page content -->
