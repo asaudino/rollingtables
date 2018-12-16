@@ -251,13 +251,90 @@ $(document).ready(function(){
     $(this).closest('[class^=creatureblock]').find('[class^=creaturehp]').text(currHP - 10);
   });
 
-  // Itemizer
+  // Itemizer - generate items for specific party level from multiple tables
+  // Validate inputs
   $('#generateitemizer').click(function(){
+    var itemizerError = false;
+    $('#itemizererror').text('');
+
     var partyLevel = $('#partylevel-input').val();
-    alert("TODO");
+
+    if(partyLevel == "" || partyLevel == null){
+      $('#itemizererror').append('<p>You must enter a party level to generate items list.</p>');
+      itemizerError = true;
+    }
+    if(typeof(partyLevel) !== 'number' && (partyLevel % 1) !== 0){
+      $('#itemizererror').append('<p>Party level must be an intiger value.</p>');
+      itemizerError = true;
+    }
+    if(partyLevel <= 0 || partyLevel > 20){
+      $('#itemizererror').append('<p>Party level must be between 1 and 20 (inclusive).</p>');
+      itemizerError = true;
+    }
+    if(itemizerError){
+      return;
+    }
+
+    // Determine table rolls based on party level
+    var itemTableRolls = {Item_Table_A:0, Item_Table_B:0, Item_Table_C:0, Item_Table_D:0, Item_Table_E:0, Item_Table_F:0, Item_Table_G:0, Item_Table_H:0, Item_Table_I:0};
+      for(var i = 1; i <= partyLevel; i++){
+      if(i <= 5){
+        itemTableRolls["Item_Table_A"]++;
+        if(i == 4){
+          itemTableRolls["Item_Table_F"]++;
+        }
+      }
+      if(i >= 6 && i <= 10){
+        itemTableRolls["Item_Table_B"]++;
+        if(i == 7){
+          itemTableRolls["Item_Table_F"]++;
+        }
+        if(i == 10){
+          itemTableRolls["Item_Table_G"]++;
+        }
+      }
+      if(i >= 11 && i <= 15){
+        itemTableRolls["Item_Table_C"]++;
+        if(i == 13){
+          itemTableRolls["Item_Table_G"]++;
+        }
+      }
+      if(i >= 16 && i <= 18){
+        itemTableRolls["Item_Table_D"]++;
+        if(i == 16){
+          itemTableRolls["Item_Table_H"]++;
+        }
+      }
+      if(i >= 19 && i <= 20){
+        itemTableRolls["Item_Table_E"]++;
+        if(i == 19){
+          itemTableRolls["Item_Table_I"]++;
+        }
+      }
+    }
+
+    //Roll the item tables
+    var itemDescription = ""
+    Object.keys(itemTableRolls).forEach(function(tableName){
+      var tableLength = Object.keys(IndirectTables["Items"][tableName]).length;
+      var rollresult = "";
+
+      for(var i = 1; i <= itemTableRolls[tableName]; i++){
+        var roll = Math.floor(Math.random() * tableLength) + 1;
+        var rollresult = IndirectTables["Items"][tableName][roll];
+        itemDescription += rollresult + "<br />";
+      }
+    });
+    $('#resulttextitemizer').html(itemDescription);
   });
 
-  // Potionizer
+  $('#clearallitemizer').click(function(){
+    $('#resulttextitemizer').html('');
+    $('#partylevel-input').val('');
+    $('#itemizererror').text('');
+  });
+
+  // Potionizer - generate potion from multiple tables
   $('#generatepotionizer').click(function(){
     var potionDescription = ""
     Object.keys(RollTables["Potions"]).forEach(function(tableName){
@@ -267,6 +344,10 @@ $(document).ready(function(){
       potionDescription += "<br /><strong>" + tableName.replace(/_/g, " ") + ": </strong>" + rollresult + "<br />";
     });
     $('#resulttextpotionizer').html(potionDescription);
+  });
+
+  $('#clearallpotionizer').click(function(){
+    $('#resulttextpotionizer').html('');
   });
 
 });
