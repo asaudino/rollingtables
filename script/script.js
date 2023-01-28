@@ -15,6 +15,7 @@ $(document).ready(function(){
   //Tables
   var RollTables = JSON.parse(sessionStorage.RollTables);
   var IndirectTables = JSON.parse(sessionStorage.IndirectTables);
+  var AllItems = JSON.parse(sessionStorage.AllItems);
 
   //Build HTML for row
   Object.keys(RollTables).forEach(function(tableSection){
@@ -332,6 +333,76 @@ $(document).ready(function(){
     $('#resulttextitemizer').html('');
     $('#partylevel-input').val('');
     $('#itemizererror').text('');
+  });
+
+  // Lute box - generate a random item, roll percentage for rarity of item
+  // Roll rarity, then grab random items until it matches the rarity rolled. Yes,
+  // inefficient, but I have a game tonight and I'm being lazy
+  $('#generatelutebox').click(function(){
+    var luteboxDescription = ""
+    var rarityRoll = Math.floor(Math.random() * 100) + 1;
+    var wondrousRoll = Math.floor(Math.random() * 100) + 1;
+    
+    // Set rarity rolled
+    var rolledRarity = ""
+    if(rarityRoll <= 60){
+      rolledRarity = "Common";
+    }
+    else if(rarityRoll > 60 && rarityRoll <= 85){
+      rolledRarity = "Uncommon";
+    }
+    else if(rarityRoll > 85 && rarityRoll <= 95){
+      rolledRarity = "Rare";
+    }
+    else if(rarityRoll > 95 && rarityRoll <= 98){
+      rolledRarity = "Very Rare";
+    }
+    else if(rarityRoll >= 99){
+      rolledRarity = "Legendary";
+    }
+    else{
+      console.log("I swallowed a bug");
+    }
+
+    do{
+      // get a random item
+      var randItemNum = Math.floor(Math.random() * AllItems.length);
+      var randItem = AllItems[randItemNum];
+
+      //check if the rarity matches the roll
+      var rarityMatch = false;
+      if(randItem["Rarity"] == rolledRarity){
+        rarityMatch = true;
+      }
+
+      // set to reroll if it shouldn't be wondrous
+      var isWondrous = (randItem["Type"] == "Wondrous Item");
+      var rolledWondrous = (wondrousRoll >= 90);
+
+      var wondrousReroll = false
+      if(isWondrous && !rolledWondrous){
+        wondrousReroll = true;
+      }
+
+    }while(!rarityMatch || wondrousReroll == true)
+    
+    // Build display string
+    var luteboxDescription = JSON.stringify(randItem);
+    $('#resulttextlutebox').html('\
+    <div class="w3-container">\
+      Rarity Roll: ' + rarityRoll + '<br />\
+      Wondrous Roll: ' + wondrousRoll + '<br /><br />\
+      ' + randItem["Name"] + '<br /> \
+      ' + randItem["Type"] + '<br /> \
+      ' + randItem["Rarity"] + '<br /> \
+      ' + randItem["Source"] + '<br /> \
+    </div>\
+  ')
+
+  });
+
+  $('#clearalllutebox').click(function(){
+    $('#resulttextlutebox').html('');
   });
 
   // Potionizer - generate potion from multiple tables
